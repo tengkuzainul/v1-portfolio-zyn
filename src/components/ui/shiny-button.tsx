@@ -5,9 +5,9 @@ import { motion, MotionProps } from "motion/react";
 
 // Define specific animation props for this component
 type AnimationProps = MotionProps & {
-  '--x'?: string;
+  "--x"?: string;
   scale?: number;
-}
+};
 import React from "react";
 
 const animationProps = {
