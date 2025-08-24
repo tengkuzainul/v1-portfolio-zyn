@@ -8,11 +8,10 @@
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix || true",
-    "vercel-build": "npm run check-versions && next build",
-    "vercel-deploy": "vercel deploy --prod",
-    "prepare-deploy": "npm run lint:fix && npm run build",
-    "prepare": "husky install",
-    "check-versions": "node -e \"console.log('Node:', process.version, '- NPM:', require('child_process').execSync('npm -v').toString().trim())\""
+    "vercel-build": "next build",
+    "deploy": "vercel --prod",
+    "preview": "vercel",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@sentry/nextjs": "^10.5.0",
