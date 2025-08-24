@@ -9,9 +9,11 @@ Untuk memastikan website selalu berhasil di-deploy ke Vercel secara otomatis, ik
 GitHub Actions membutuhkan tiga secrets untuk deployment ke Vercel:
 
 1. **VERCEL_TOKEN** - Token API dari Vercel
+
    - Cara mendapatkan: [Vercel Dashboard → Settings → Tokens](https://vercel.com/account/tokens)
 
 2. **VERCEL_ORG_ID** - ID Organisasi Vercel
+
    - Cara mendapatkan: [Vercel Dashboard → Settings → General](https://vercel.com/dashboard/settings)
 
 3. **VERCEL_PROJECT_ID** - ID Project Vercel
@@ -31,6 +33,7 @@ npm run build     # Build project untuk mendeteksi error
 ## 🛠 Cara Mendiagnosis Error Deployment
 
 1. **Periksa error log di GitHub Actions**:
+
    - Buka tab Actions di repository GitHub
    - Klik workflow "Deploy to Vercel" yang gagal
    - Periksa step yang error (berwarna merah)
@@ -47,9 +50,10 @@ npm run build     # Build project untuk mendeteksi error
 Jika ada error ESLint yang mengganggu deployment:
 
 1. **Untuk variable tidak terpakai**:
+
    ```tsx
    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-   const unusedVar = 'value';
+   const unusedVar = "value";
    ```
 
 2. **Untuk penggunaan any**:
@@ -64,7 +68,7 @@ Jika ada error ESLint yang mengganggu deployment:
    ```tsx
    interface ButtonProps {
      label: string;
-     onClick?: () => void;  // Gunakan optional (?) untuk prop yang tidak wajib
+     onClick?: () => void; // Gunakan optional (?) untuk prop yang tidak wajib
    }
    ```
 

@@ -19,9 +19,10 @@ export default withSentryConfig(nextConfig, {
   // For all available options, see:
   // https://www.npmjs.com/package/@sentry/webpack-plugin#options
 
-  org: "muhammadiyah-university-of-ria",
+  // Use environment variables instead of hardcoding sensitive values
+  org: process.env.SENTRY_ORG || "",
 
-  project: "javascript-nextjs",
+  project: process.env.SENTRY_PROJECT || "",
 
   // Only print logs for uploading source maps in CI
   silent: !process.env.CI,
