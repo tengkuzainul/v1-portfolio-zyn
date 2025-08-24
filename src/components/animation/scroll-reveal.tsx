@@ -178,12 +178,12 @@ export default function ScrollReveal({
 export const StaggerItem = ({
   children,
   className = "",
-  customVariants = null,
+  customVariants = undefined,
   duration = 0.5,
 }: {
   children: React.ReactNode;
   className?: string;
-  customVariants?: any;
+  customVariants?: Record<string, { opacity?: number; y?: number }>;
   duration?: number;
 }) => {
   const variants = customVariants || {

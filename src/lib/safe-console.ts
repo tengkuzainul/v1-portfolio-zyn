@@ -15,40 +15,40 @@ const isDev = process.env.NODE_ENV === "development";
  */
 const safeConsole = {
   // Only logs in development
-  log: (message?: any, ...optionalParams: any[]) => {
+  log: (message?: unknown, ...optionalParams: unknown[]) => {
     if (isDev) {
       console.log(message, ...optionalParams);
     }
   },
 
   // Only logs in development
-  info: (message?: any, ...optionalParams: any[]) => {
+  info: (message?: unknown, ...optionalParams: unknown[]) => {
     if (isDev) {
       console.info(message, ...optionalParams);
     }
   },
 
   // Only logs in development
-  debug: (message?: any, ...optionalParams: any[]) => {
+  debug: (message?: unknown, ...optionalParams: unknown[]) => {
     if (isDev) {
       console.debug(message, ...optionalParams);
     }
   },
 
   // Warnings are shown in development, suppressed in production
-  warn: (message?: any, ...optionalParams: any[]) => {
+  warn: (message?: unknown, ...optionalParams: unknown[]) => {
     if (isDev) {
       console.warn(message, ...optionalParams);
     }
   },
 
   // Errors are always logged (for critical issues)
-  error: (message?: any, ...optionalParams: any[]) => {
+  error: (message?: unknown, ...optionalParams: unknown[]) => {
     console.error(message, ...optionalParams);
   },
 
   // Force a log even in production (use sparingly)
-  forceLog: (message?: any, ...optionalParams: any[]) => {
+  forceLog: (message?: unknown, ...optionalParams: unknown[]) => {
     console.log(message, ...optionalParams);
   },
 };

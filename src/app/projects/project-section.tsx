@@ -23,10 +23,10 @@ import {
   IconChartBar,
   IconBrandLivewire,
 } from "@tabler/icons-react";
-import LogoLoop from "@/components/ui/logo-loop";
 
 // Import project data from shared file
 import { Project, projects } from "./projects-data";
+import LogoLoop from "@/components/ui/logo-loop";
 
 export function ProjectSection({ loaded = true }: { loaded?: boolean }) {
   // Use router directly instead of the NavigationProvider for now

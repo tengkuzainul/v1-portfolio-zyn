@@ -81,6 +81,7 @@ const IntersectionDetector = ({
  * @param LoadingComponent - Custom loading component (optional)
  * @returns Lazy loaded component wrapped in Suspense
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function lazyLoad<T extends ComponentType<any>>(
   importFn: () => Promise<{ default: T }>,
   LoadingComponent: ComponentType<LoadingProps> = DefaultLoading
@@ -103,6 +104,7 @@ export function lazyLoad<T extends ComponentType<any>>(
  * @param LoadingComponent - Custom loading component (optional)
  * @returns Lazy loaded component that only loads when scrolled into view
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function lazyLoadOnScroll<T extends ComponentType<any>>(
   importFn: () => Promise<{ default: T }>,
   LoadingComponent: ComponentType<LoadingProps> = DefaultLoading

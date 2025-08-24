@@ -36,7 +36,7 @@ export default function HeroContent({ passions }: HeroContentProps) {
       <StaggerItem>
         <div className="flex justify-center">
           <ShinyButton className="bg-gray-100/80 dark:bg-neutral-800/80 font-medium rounded-full shadow-sm border-gray-200 dark:border-neutral-700 px-4 py-1.5 text-gray-600 dark:text-gray-400">
-            Hello, I'm
+            Hello, I&apos;m
           </ShinyButton>
         </div>
       </StaggerItem>

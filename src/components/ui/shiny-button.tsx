@@ -3,7 +3,11 @@
 import { cn } from "@/lib/utils";
 import { motion, MotionProps } from "motion/react";
 
-type AnimationProps = any; // Using any as a temporary solution
+// Define specific animation props for this component
+type AnimationProps = MotionProps & {
+  '--x'?: string;
+  scale?: number;
+}
 import React from "react";
 
 const animationProps = {

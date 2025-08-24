@@ -6,7 +6,7 @@ import { IconCode } from "@tabler/icons-react";
 interface TechStackProps {
   techStack: Array<{
     name: string;
-    icon: any;
+    icon: React.ElementType;
     delay: number;
   }>;
 }
