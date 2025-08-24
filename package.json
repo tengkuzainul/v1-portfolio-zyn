@@ -4,13 +4,17 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "vercel-build": "next build",
+    "vercel-deploy": "vercel deploy --prod"
   },
   "dependencies": {
+    "@sentry/nextjs": "^10.5.0",
     "@studio-freight/lenis": "^1.0.42",
     "@tabler/icons-react": "^3.34.1",
+    "@vercel/analytics": "^1.5.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "gsap": "^3.13.0",

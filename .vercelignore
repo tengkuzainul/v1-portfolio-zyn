@@ -1,0 +1,9 @@
+# Vercel ignore file
+
+# Ignore development files
+.github
+.git
+
+# Pengecualian - Sertakan folder private dengan CV
+!private/
+!private/assets/
