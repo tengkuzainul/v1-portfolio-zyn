@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Manrope } from "next/font/google";
 import "./globals.css";
 import { AnimatedThemeToggler } from "@/components/magicui/animated-theme-toggler";
@@ -12,6 +12,15 @@ const manrope = Manrope({
   subsets: ["latin"],
   display: "swap",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f8f9fa" },
+    { media: "(prefers-color-scheme: dark)", color: "#171717" },
+  ],
+};
 
 export const metadata: Metadata = {
   title: "Tengku M Zainul A • Full Stack Web Developer Portfolio",
@@ -59,11 +68,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  viewport: "width=device-width, initial-scale=1",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f8f9fa" },
-    { media: "(prefers-color-scheme: dark)", color: "#171717" },
-  ],
 };
 
 export default function RootLayout({

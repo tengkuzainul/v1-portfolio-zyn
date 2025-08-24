@@ -16,7 +16,10 @@ const HomeSection = dynamic(() => import("./pages/home/home-section"), {
 
 export default function Home() {
   return (
-    <main className="flex flex-col w-full overflow-hidden">
+    <main
+      className="flex flex-col w-full overflow-hidden"
+      style={{ position: "relative" }}
+    >
       <Suspense
         fallback={
           <div className="flex items-center justify-center min-h-screen">

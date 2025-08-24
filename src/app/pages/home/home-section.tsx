@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import {
   IconBrandLaravel,
   IconBrandTailwind,
@@ -16,6 +16,7 @@ import { useEffect } from "react";
 import { LazyHeroContent, LazyTechStack } from "./components";
 import { lazyLoadOnScroll } from "@/lib/lazy-load";
 import AboutSection from "./about-section";
+import { ProjectSection } from "@/app/projects/project-section";
 
 // Lazy load the about section when scrolled into view
 const LazyAboutSection = lazyLoadOnScroll(() => import("./about-section"));
@@ -48,8 +49,7 @@ const HomeSection = () => {
   // We're no longer using class-based animation sequence
   // since we're now handling animations with React state in the components
   useEffect(() => {
-    // Component mount effect
-    console.log("Home section mounted");
+    // No console logs needed
   }, []);
 
   return (
@@ -57,10 +57,11 @@ const HomeSection = () => {
       <section
         id="home"
         className="min-h-[90vh] w-full flex flex-col justify-center items-center relative overflow-hidden py-5 md:py-10"
+        style={{ position: "relative" }}
       >
         {/* Main content container - centered */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
-          {/* Lazy loaded hero content */}
+          {/* Hero content with improved animations */}
           <LazyHeroContent passions={passions} />
         </div>
 
@@ -72,7 +73,11 @@ const HomeSection = () => {
           </div>
         </div>
       </section>
-      <LazyAboutSection />
+      {/* Use the eager-loaded AboutSection for guaranteed rendering */}
+      <AboutSection />
+
+      {/* Projects Section with staggered animations */}
+      <ProjectSection />
     </>
   );
 };

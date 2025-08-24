@@ -1,5 +1,5 @@
 "use client";
-import { useScroll, useTransform, motion } from "motion/react";
+import { useScroll, useTransform, motion } from "framer-motion";
 import type React from "react";
 import { useEffect, useRef, useState } from "react";
 
@@ -12,6 +12,9 @@ export const TimelineItems = ({ data }: { data: TimelineEntry[] }) => {
   const ref = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
+  const [visibleItems, setVisibleItems] = useState<boolean[]>(
+    Array(data.length).fill(false)
+  );
 
   useEffect(() => {
     if (ref.current) {
@@ -55,26 +58,71 @@ export const TimelineItems = ({ data }: { data: TimelineEntry[] }) => {
 
       <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
         {data.map((item, index) => (
-          <div
+          <motion.div
             key={index}
             className="flex justify-start pt-10 md:pt-40 md:gap-10"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.6,
+              delay: index * 0.2,
+            }}
+            viewport={{ once: true, margin: "-100px" }}
           >
             <div className="sticky flex flex-col md:flex-row z-30 items-center top-32 self-start max-w-xs lg:max-w-sm md:w-full">
               <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-white dark:bg-black flex items-center justify-center border border-neutral-300 dark:border-neutral-700">
-                <div className="h-4 w-4 rounded-full bg-gradient-to-br from-black to-gray-600 dark:from-white dark:to-gray-300 border border-neutral-300 dark:border-neutral-700" />
+                <motion.div
+                  className="h-4 w-4 rounded-full bg-gradient-to-br from-black to-gray-600 dark:from-white dark:to-gray-300 border border-neutral-300 dark:border-neutral-700"
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{
+                    duration: 0.4,
+                    delay: index * 0.2 + 0.3,
+                    type: "spring",
+                  }}
+                  viewport={{ once: true, margin: "-100px" }}
+                />
               </div>
-              <h3 className="hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-neutral-800 dark:text-neutral-200">
+              <motion.h3
+                className="hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-neutral-800 dark:text-neutral-200"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.2 + 0.2,
+                }}
+                viewport={{ once: true, margin: "-100px" }}
+              >
                 {item.title}
-              </h3>
+              </motion.h3>
             </div>
 
             <div className="relative pl-20 pr-4 md:pl-4 w-full">
-              <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-neutral-800 dark:text-neutral-200">
+              <motion.h3
+                className="md:hidden block text-2xl mb-4 text-left font-bold text-neutral-800 dark:text-neutral-200"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.2 + 0.2,
+                }}
+                viewport={{ once: true, margin: "-100px" }}
+              >
                 {item.title}
-              </h3>
-              {item.content}
+              </motion.h3>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.2 + 0.4,
+                }}
+                viewport={{ once: true, margin: "-100px" }}
+              >
+                {item.content}
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         ))}
         <div
           style={{

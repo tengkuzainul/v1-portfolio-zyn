@@ -1,6 +1,7 @@
 "use client";
 
 import { useReportWebVitals } from "next/web-vitals";
+import safeConsole from "@/lib/safe-console";
 
 // Extend Window interface to include gtag
 declare global {
@@ -28,9 +29,17 @@ export function WebVitals() {
       });
     }
 
-    // Log to console during development
-    if (process.env.NODE_ENV === "development") {
-      console.log(`Web Vital: ${name}`, metric);
+    // Only log web vitals in development mode
+    if (
+      name === "FCP" ||
+      name === "LCP" ||
+      name === "CLS" ||
+      name === "FID" ||
+      name === "TTFB" ||
+      name === "INP"
+    ) {
+      // Use our safe console utility to avoid logging in production
+      safeConsole.debug(`Web Vital: ${name}`, { value, rating: metric.rating });
     }
 
     // Send to Vercel Analytics if available

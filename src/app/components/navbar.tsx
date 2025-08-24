@@ -248,6 +248,25 @@ export function NavBar({ children }: NavBarProps) {
     return activeSection === sectionId;
   };
 
+  // Handle smooth scrolling to sections
+  const scrollToSection = (sectionId: string) => {
+    const targetId = sectionId.replace("#", "");
+    const section = document.getElementById(targetId);
+
+    if (section) {
+      console.log(`Scrolling to section: ${targetId}`);
+      // Add offset to account for fixed navbar
+      const yOffset = -80;
+      const y = section.getBoundingClientRect().top + window.scrollY + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+      setActiveSection(sectionId);
+    } else {
+      console.error(
+        `Element with id "${targetId}" not found when trying to scroll`
+      );
+    }
+  };
+
   // Track section visibility with improved sensitivity
   useEffect(() => {
     const sectionIds = navItems.map((item) => item.link.replace("#", ""));
@@ -421,17 +440,7 @@ export function NavBar({ children }: NavBarProps) {
                   href={item.link}
                   onClick={(e) => {
                     e.preventDefault();
-                    const targetId = item.link.replace("#", "");
-                    const element = document.getElementById(targetId);
-                    if (element) {
-                      // Add offset to account for fixed navbar
-                      const yOffset = -80;
-                      const y =
-                        element.getBoundingClientRect().top +
-                        window.pageYOffset +
-                        yOffset;
-                      window.scrollTo({ top: y, behavior: "smooth" });
-                    }
+                    scrollToSection(item.link);
                   }}
                   onMouseEnter={() => setHovered(idx)}
                   className={`relative px-4 py-2 cursor-pointer block transition-all duration-300 ${
@@ -543,17 +552,7 @@ export function NavBar({ children }: NavBarProps) {
                   onClick={(e) => {
                     e.preventDefault();
                     setIsMobileMenuOpen(false);
-                    const targetId = item.link.replace("#", "");
-                    const element = document.getElementById(targetId);
-                    if (element) {
-                      // Add offset to account for fixed navbar
-                      const yOffset = -70;
-                      const y =
-                        element.getBoundingClientRect().top +
-                        window.pageYOffset +
-                        yOffset;
-                      window.scrollTo({ top: y, behavior: "smooth" });
-                    }
+                    scrollToSection(item.link);
                   }}
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}

@@ -2,6 +2,7 @@
 
 import { TimelineItems } from "./timeline-item";
 import { ReactNode } from "react";
+import { motion } from "framer-motion";
 
 // Create a reusable TechBadge component
 const TechBadge = ({ children }: { children: ReactNode }) => (
@@ -30,29 +31,83 @@ const TimelineProject = ({
   projects: Project[];
 }) => (
   <div>
-    <p className="text-blue-600 dark:text-blue-400 text-sm font-medium mb-2">
+    <motion.p
+      className="text-blue-600 dark:text-blue-400 text-sm font-medium mb-2"
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: 0.1 }}
+      viewport={{ once: true, margin: "-50px" }}
+    >
       {date}
-    </p>
-    <h3 className="text-xl font-bold text-neutral-800 dark:text-neutral-200 mb-4 z-20">
+    </motion.p>
+    <motion.h3
+      className="text-xl font-bold text-neutral-800 dark:text-neutral-200 mb-4 z-20"
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: 0.2 }}
+      viewport={{ once: true, margin: "-50px" }}
+    >
       {title} &mdash; {institution}
-    </h3>
+    </motion.h3>
     <div className="space-y-8">
       {projects.map((project, idx) => (
-        <div key={idx} className="space-y-4">
-          <h4 className="text-blue-600 dark:text-blue-400 font-semibold mb-2">
+        <motion.div
+          key={idx}
+          className="space-y-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 + idx * 0.15 }}
+          viewport={{ once: true, margin: "-50px" }}
+        >
+          <motion.h4
+            className="text-blue-600 dark:text-blue-400 font-semibold mb-2"
+            initial={{ opacity: 0, x: -10 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4, delay: 0.4 + idx * 0.15 }}
+            viewport={{ once: true, margin: "-50px" }}
+          >
             ✦ {project.name}
-          </h4>
-          <div className="px-5 space-y-4">
-            <p className="text-neutral-600 dark:text-neutral-400 text-sm">
+          </motion.h4>
+          <motion.div
+            className="px-5 space-y-4"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.4, delay: 0.5 + idx * 0.15 }}
+            viewport={{ once: true, margin: "-50px" }}
+          >
+            <motion.p
+              className="text-neutral-600 dark:text-neutral-400 text-sm"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.4, delay: 0.6 + idx * 0.15 }}
+              viewport={{ once: true, margin: "-50px" }}
+            >
               {project.description}
-            </p>
-            <div className="flex flex-wrap items-center gap-2 md:gap-3">
+            </motion.p>
+            <motion.div
+              className="flex flex-wrap items-center gap-2 md:gap-3"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.4, delay: 0.7 + idx * 0.15 }}
+              viewport={{ once: true, margin: "-50px" }}
+            >
               {project.technologies.map((tech, index) => (
-                <TechBadge key={index}>{tech}</TechBadge>
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    duration: 0.3,
+                    delay: 0.8 + idx * 0.1 + index * 0.05,
+                  }}
+                  viewport={{ once: true, margin: "-50px" }}
+                >
+                  <TechBadge>{tech}</TechBadge>
+                </motion.div>
               ))}
-            </div>
-          </div>
-        </div>
+            </motion.div>
+          </motion.div>
+        </motion.div>
       ))}
     </div>
   </div>

@@ -13,5 +13,12 @@ export default function SmoothScrollProvider({
   // Initialize smooth scrolling
   useSmoothScroll();
 
-  return <>{children}</>;
+  return (
+    <div
+      className="relative w-full h-full min-h-screen"
+      style={{ position: "relative" }}
+    >
+      {children}
+    </div>
+  );
 }
