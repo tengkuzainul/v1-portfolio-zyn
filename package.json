@@ -7,8 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "vercel-build": "next build",
-    "vercel-deploy": "vercel deploy --prod"
+    "vercel-deploy": "vercel deploy --prod",
+    "prepare-deploy": "npm run lint:fix && npm run build",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@sentry/nextjs": "^10.5.0",
@@ -33,6 +36,8 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.5.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.5",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.7",
     "typescript": "^5"
