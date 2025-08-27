@@ -22,19 +22,19 @@ export default function Preloader({
       setProgress(0);
       setIsComplete(false);
 
-      // Fast loader animation that completes in 600ms for better UX
+      // Longer animation duration (1.2s) for better visibility
       const interval = setInterval(() => {
         setProgress((prev) => {
           if (prev >= 100) {
             clearInterval(interval);
-            // Quick completion for smooth SPA experience
+            // Give time for user to see completion before hiding
             setTimeout(() => {
               setIsComplete(true);
-            }, 100);
+            }, 400); // Increased delay to show completion
             return 100;
           }
-          // Fast progress increments for 600ms total duration
-          return prev + 8.33; // Will complete in 12 intervals (12 * 50ms = 600ms)
+          // Slower progress increments for 1.2s total duration
+          return prev + 4.17; // Will complete in 24 intervals (24 * 50ms = 1200ms)
         });
       }, 50); // Smooth 50ms interval
 
@@ -55,12 +55,24 @@ export default function Preloader({
     <AnimatePresence mode="wait">
       <motion.div
         className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black"
-        initial={{ opacity: 0, scale: 0.98 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 1.02 }}
+        initial={{
+          opacity: 0,
+          y: "-100%", // Start from top
+          scale: 0.95,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0, // Move to center
+          scale: 1,
+        }}
+        exit={{
+          opacity: 0,
+          y: "100%", // Exit to bottom
+          scale: 1.05,
+        }}
         transition={{
-          duration: 0.12,
-          ease: [0.25, 0.46, 0.45, 0.94], // Custom easing for smooth feel
+          duration: 0.6, // Slower entrance/exit
+          ease: [0.16, 1, 0.3, 1], // Smooth custom easing
         }}
       >
         {/* Main Content Container */}
@@ -68,13 +80,15 @@ export default function Preloader({
           {/* Logo Container - Matching the image design */}
           <motion.div
             className="relative"
-            initial={{ scale: 0.9, opacity: 0 }}
+            initial={{ scale: 0.8, opacity: 0, y: 20 }}
             animate={{
               scale: 1,
               opacity: 1,
+              y: 0,
             }}
             transition={{
-              duration: 0.2,
+              duration: 0.5,
+              delay: 0.3, // Delay for entrance effect
               ease: "easeOut",
             }}
           >
@@ -83,11 +97,11 @@ export default function Preloader({
               className="w-14 h-14 bg-white rounded-lg flex items-center justify-center shadow-2xl"
               animate={{
                 rotate: [0, 360],
-                scale: [1, 1.01, 1],
+                scale: [1, 1.03, 1],
               }}
               transition={{
-                rotate: { duration: 1.8, ease: "linear", repeat: Infinity },
-                scale: { duration: 1.2, ease: "easeInOut", repeat: Infinity },
+                rotate: { duration: 2.5, ease: "linear", repeat: Infinity },
+                scale: { duration: 1.5, ease: "easeInOut", repeat: Infinity },
               }}
             >
               {/* TZ Logo - Exactly like in the image */}
@@ -100,11 +114,11 @@ export default function Preloader({
             <motion.div
               className="absolute inset-0 border border-white/15 rounded-lg"
               animate={{
-                scale: [1, 1.06, 1],
-                opacity: [0.15, 0.3, 0.15],
+                scale: [1, 1.08, 1],
+                opacity: [0.15, 0.4, 0.15],
               }}
               transition={{
-                duration: 1.8,
+                duration: 2.2,
                 ease: "easeInOut",
                 repeat: Infinity,
               }}
@@ -114,9 +128,9 @@ export default function Preloader({
           {/* Text Content - Matching the image exactly */}
           <motion.div
             className="text-center max-w-sm px-4"
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.08 }}
+            transition={{ duration: 0.4, delay: 0.5 }}
           >
             <h1 className="text-white text-sm font-normal leading-relaxed">
               Tengku Muhammad Zainul Aprilizar
@@ -134,7 +148,7 @@ export default function Preloader({
             className="text-center mt-3"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.2, delay: 0.15 }}
+            transition={{ duration: 0.3, delay: 0.7 }}
           >
             {/* Simple loading dots */}
             <div className="flex items-center justify-center space-x-0.5">
@@ -147,9 +161,9 @@ export default function Preloader({
                     opacity: [0.4, 1, 0.4],
                   }}
                   transition={{
-                    duration: 0.8,
+                    duration: 1.0,
                     repeat: Infinity,
-                    delay: i * 0.15,
+                    delay: i * 0.2,
                   }}
                 />
               ))}
@@ -158,8 +172,8 @@ export default function Preloader({
             {/* Status text */}
             <motion.p
               className="text-white/30 text-xs mt-2 font-light"
-              animate={{ opacity: [0.3, 0.6, 0.3] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
+              animate={{ opacity: [0.3, 0.7, 0.3] }}
+              transition={{ duration: 2.0, repeat: Infinity }}
             >
               {type === "back" ? "Returning..." : "Loading..."}
             </motion.p>
