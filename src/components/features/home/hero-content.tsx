@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { IconArrowRight } from "@tabler/icons-react";
 import { WordRotate } from "@/components/ui/word-rotate";
 import { ShinyButton } from "@/components/ui/shiny-button";
-import SocialIcons from "@/app/components/social-icons";
+import SocialIcons from "@/components/features/home/social-icons";
 import ScrollReveal, {
   StaggerItem,
 } from "@/components/animation/scroll-reveal";
@@ -56,7 +56,7 @@ export default function HeroContent({ passions }: HeroContentProps) {
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
             className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-neutral-800 to-neutral-600 dark:from-gray-100 dark:to-gray-400"
           >
-            Zainul Arifin
+            Zainul Aprilizar
           </motion.span>
         </h1>
       </StaggerItem>

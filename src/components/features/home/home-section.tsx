@@ -16,7 +16,7 @@ import { useEffect } from "react";
 import { LazyHeroContent, LazyTechStack } from "./components";
 import { lazyLoadOnScroll } from "@/lib/lazy-load";
 import AboutSection from "./about-section";
-import { ProjectSection } from "@/app/projects/project-section";
+import { ProjectSection } from "@/components/features/projects/project-section";
 
 // Lazy load the about section when scrolled into view
 const LazyAboutSection = lazyLoadOnScroll(() => import("./about-section"));
@@ -63,12 +63,9 @@ const HomeSection = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
           {/* Hero content with improved animations */}
           <LazyHeroContent passions={passions} />
-        </div>
 
-        {/* Tech stack in a separate centered container */}
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-center mt-8">
-          <div className="w-full max-w-4xl">
-            {/* Lazy loaded tech stack */}
+          {/* Tech stack aligned with hero content */}
+          <div className="flex justify-center mt-8">
             <LazyTechStack techStack={techStack} />
           </div>
         </div>

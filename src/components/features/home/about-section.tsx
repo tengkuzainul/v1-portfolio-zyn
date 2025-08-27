@@ -1,11 +1,10 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { AboutCard } from "@/app/components/about-card";
-import { SkillsSection } from "@/app/components/skills-section";
-import TimelineSections from "@/app/components/timeline-section";
-import AboutText from "@/app/components/about-text";
-import ProjectsSection from "@/app/components/projects-section";
+import { AboutCard } from "@/components/features/about/about-card";
+import { SkillsSection } from "@/components/features/about/skills-section";
+import TimelineSections from "@/components/features/about/timeline-section";
+import AboutText from "@/components/features/about/about-text";
 import ScrollReveal, {
   StaggerItem,
 } from "@/components/animation/scroll-reveal";

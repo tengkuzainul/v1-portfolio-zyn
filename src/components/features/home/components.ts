@@ -1,4 +1,4 @@
-import { lazyLoad } from "../../../lib/lazy-load";
+import { lazyLoad } from "@/lib/lazy-load";
 import type { Icon } from "@tabler/icons-react";
 
 // Lazy loaded components

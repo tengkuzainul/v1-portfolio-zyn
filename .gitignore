@@ -155,3 +155,6 @@ storybook-static/
 /temp/
 *.tmp
 *.bak
+
+# Bash crash dumps (Windows)
+*.stackdump

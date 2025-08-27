@@ -211,6 +211,9 @@ const Toast = ({ message, type, visible, onClose }: ToastProps) => {
 };
 
 export function NavBar({ children }: NavBarProps) {
+  const pathname = usePathname();
+  const isProjectsPage = pathname === "/projects";
+
   const navItems = [
     {
       name: "Home",
@@ -424,217 +427,219 @@ export function NavBar({ children }: NavBarProps) {
         visible={toast.visible}
         onClose={() => setToast((prev) => ({ ...prev, visible: false }))}
       />
-      <Navbar>
-        {/* Desktop Navigation */}
-        <NavBody>
-          <NavbarLogo />
-          <motion.div
-            onMouseLeave={() => setHovered(null)}
-            className="absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-zinc-600 lg:flex lg:space-x-2"
-          >
-            {navItems.map((item, idx) => {
-              const active = isActiveSection(item.link);
-              return (
-                <a
-                  key={`nav-item-${idx}`}
-                  href={item.link}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection(item.link);
-                  }}
-                  onMouseEnter={() => setHovered(idx)}
-                  className={`relative px-4 py-2 cursor-pointer block transition-all duration-300 ${
-                    active
-                      ? "font-semibold text-gray-200 dark:text-neutral-900"
-                      : "text-neutral-600 dark:text-gray-200"
-                  }`}
-                >
-                  {hovered === idx && !active && (
-                    <motion.div
-                      layoutId="hovered"
-                      className="absolute inset-0 h-full w-full rounded-full bg-gray-300 dark:bg-neutral-800"
-                      initial={{ opacity: 0, scale: 0.85 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 400,
-                        damping: 20,
-                      }}
-                    />
-                  )}
-                  {active && (
-                    <motion.div
-                      className="absolute inset-0 h-full w-full rounded-full bg-neutral-900 dark:bg-gray-200"
-                      layoutId="active"
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 400,
-                        damping: 17,
-                        mass: 0.8,
-                      }}
-                    />
-                  )}
-                  <motion.span
-                    className="relative z-20"
-                    animate={{ scale: active ? 1.05 : 1 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {item.name}
-                  </motion.span>
-                </a>
-              );
-            })}
-          </motion.div>
-          <div className="flex items-center gap-2">
-            <div className="nav-button-container">
-              <NavbarButton
-                variant={getButtonVariant()}
-                className="flex items-center gap-3 select-none"
-                onClick={handleDownloadCV}
-                as="button"
-                disabled={isDownloading}
-              >
-                {isDownloading ? (
-                  <>
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.2 }}
-                      className="flex items-center gap-2"
-                    >
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{
-                          duration: 1,
-                          repeat: Infinity,
-                          ease: "linear",
-                        }}
-                        className="w-4 h-4"
-                      >
-                        <IconFidgetSpinner size={16} stroke={1.5} />
-                      </motion.div>
-                      Downloading...
-                    </motion.div>
-                  </>
-                ) : (
-                  <>
-                    <IconFileCv stroke={1.5} className="size-5" /> {""}Download
-                    My CV
-                  </>
-                )}
-              </NavbarButton>
-            </div>
-          </div>
-        </NavBody>
-
-        {/* Mobile Navigation */}
-        <MobileNav>
-          <MobileNavHeader>
+      {!isProjectsPage && (
+        <Navbar>
+          {/* Desktop Navigation */}
+          <NavBody>
             <NavbarLogo />
-            <MobileNavToggle
-              isOpen={isMobileMenuOpen}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            />
-          </MobileNavHeader>
-
-          <MobileNavMenu
-            isOpen={isMobileMenuOpen}
-            onClose={() => setIsMobileMenuOpen(false)}
-          >
-            {navItems.map((item, idx) => {
-              const active = isActiveSection(item.link);
-              return (
-                <motion.a
-                  key={`mobile-link-${idx}`}
-                  href={item.link}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsMobileMenuOpen(false);
-                    scrollToSection(item.link);
-                  }}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.05 }}
-                  whileHover={{ x: 5 }}
-                  className={`relative py-3 px-4 w-full flex items-center cursor-pointer rounded-md transition-all duration-300 ${
-                    active
-                      ? "font-bold text-black dark:text-white bg-neutral-100 dark:bg-neutral-800"
-                      : "text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800/50"
-                  }`}
-                >
-                  {/* Blue indicator removed */}
-                  <motion.span
-                    className="block ml-2 text-lg"
-                    whileTap={{ scale: 0.97 }}
+            <motion.div
+              onMouseLeave={() => setHovered(null)}
+              className="absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-zinc-600 lg:flex lg:space-x-2"
+            >
+              {navItems.map((item, idx) => {
+                const active = isActiveSection(item.link);
+                return (
+                  <a
+                    key={`nav-item-${idx}`}
+                    href={item.link}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToSection(item.link);
+                    }}
+                    onMouseEnter={() => setHovered(idx)}
+                    className={`relative px-4 py-2 cursor-pointer block transition-all duration-300 ${
+                      active
+                        ? "font-semibold text-gray-200 dark:text-neutral-900"
+                        : "text-neutral-600 dark:text-gray-200"
+                    }`}
                   >
-                    {item.name}
-                  </motion.span>
-                </motion.a>
-              );
-            })}
-            <div className="flex w-full flex-col gap-4 mt-2">
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              >
+                    {hovered === idx && !active && (
+                      <motion.div
+                        layoutId="hovered"
+                        className="absolute inset-0 h-full w-full rounded-full bg-gray-300 dark:bg-neutral-800"
+                        initial={{ opacity: 0, scale: 0.85 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 20,
+                        }}
+                      />
+                    )}
+                    {active && (
+                      <motion.div
+                        className="absolute inset-0 h-full w-full rounded-full bg-neutral-900 dark:bg-gray-200"
+                        layoutId="active"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 17,
+                          mass: 0.8,
+                        }}
+                      />
+                    )}
+                    <motion.span
+                      className="relative z-20"
+                      animate={{ scale: active ? 1.05 : 1 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      {item.name}
+                    </motion.span>
+                  </a>
+                );
+              })}
+            </motion.div>
+            <div className="flex items-center gap-2">
+              <div className="nav-button-container">
                 <NavbarButton
-                  onClick={(e: React.MouseEvent) => {
-                    setIsMobileMenuOpen(false);
-                    !isDownloading && handleDownloadCV();
-                  }}
                   variant={getButtonVariant()}
-                  className="w-full flex items-center justify-center gap-2"
+                  className="flex items-center gap-3 select-none"
+                  onClick={handleDownloadCV}
+                  as="button"
                   disabled={isDownloading}
                 >
                   {isDownloading ? (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      className="flex items-center gap-2 justify-center"
-                    >
+                    <>
                       <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{
-                          duration: 1,
-                          repeat: Infinity,
-                          ease: "linear",
-                        }}
-                        className="w-4 h-4"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.2 }}
+                        className="flex items-center gap-2"
                       >
-                        <IconFidgetSpinner size={16} stroke={1.5} />
+                        <motion.div
+                          animate={{ rotate: 360 }}
+                          transition={{
+                            duration: 1,
+                            repeat: Infinity,
+                            ease: "linear",
+                          }}
+                          className="w-4 h-4"
+                        >
+                          <IconFidgetSpinner size={16} stroke={1.5} />
+                        </motion.div>
+                        Downloading...
                       </motion.div>
-                      Downloading...
-                    </motion.div>
+                    </>
                   ) : (
                     <>
-                      <motion.span
-                        initial={{ x: -5, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        transition={{ delay: 0.2 }}
-                      >
-                        Download My CV
-                      </motion.span>
-                      <motion.span
-                        initial={{ x: 5, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        transition={{ delay: 0.3 }}
-                      >
-                        <IconFileCv stroke={1.5} />
-                      </motion.span>
+                      <IconFileCv stroke={1.5} className="size-5" /> {""}
+                      Download My CV
                     </>
                   )}
                 </NavbarButton>
-              </motion.div>
+              </div>
             </div>
-          </MobileNavMenu>
-        </MobileNav>
-      </Navbar>
+          </NavBody>
+
+          {/* Mobile Navigation */}
+          <MobileNav>
+            <MobileNavHeader>
+              <NavbarLogo />
+              <MobileNavToggle
+                isOpen={isMobileMenuOpen}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              />
+            </MobileNavHeader>
+
+            <MobileNavMenu
+              isOpen={isMobileMenuOpen}
+              onClose={() => setIsMobileMenuOpen(false)}
+            >
+              {navItems.map((item, idx) => {
+                const active = isActiveSection(item.link);
+                return (
+                  <motion.a
+                    key={`mobile-link-${idx}`}
+                    href={item.link}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsMobileMenuOpen(false);
+                      scrollToSection(item.link);
+                    }}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: idx * 0.05 }}
+                    whileHover={{ x: 5 }}
+                    className={`relative py-3 px-4 w-full flex items-center cursor-pointer rounded-md transition-all duration-300 ${
+                      active
+                        ? "font-bold text-black dark:text-white bg-neutral-100 dark:bg-neutral-800"
+                        : "text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800/50"
+                    }`}
+                  >
+                    {/* Blue indicator removed */}
+                    <motion.span
+                      className="block ml-2 text-lg"
+                      whileTap={{ scale: 0.97 }}
+                    >
+                      {item.name}
+                    </motion.span>
+                  </motion.a>
+                );
+              })}
+              <div className="flex w-full flex-col gap-4 mt-2">
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
+                  <NavbarButton
+                    onClick={(e: React.MouseEvent) => {
+                      setIsMobileMenuOpen(false);
+                      !isDownloading && handleDownloadCV();
+                    }}
+                    variant={getButtonVariant()}
+                    className="w-full flex items-center justify-center gap-2"
+                    disabled={isDownloading}
+                  >
+                    {isDownloading ? (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="flex items-center gap-2 justify-center"
+                      >
+                        <motion.div
+                          animate={{ rotate: 360 }}
+                          transition={{
+                            duration: 1,
+                            repeat: Infinity,
+                            ease: "linear",
+                          }}
+                          className="w-4 h-4"
+                        >
+                          <IconFidgetSpinner size={16} stroke={1.5} />
+                        </motion.div>
+                        Downloading...
+                      </motion.div>
+                    ) : (
+                      <>
+                        <motion.span
+                          initial={{ x: -5, opacity: 0 }}
+                          animate={{ x: 0, opacity: 1 }}
+                          transition={{ delay: 0.2 }}
+                        >
+                          Download My CV
+                        </motion.span>
+                        <motion.span
+                          initial={{ x: 5, opacity: 0 }}
+                          animate={{ x: 0, opacity: 1 }}
+                          transition={{ delay: 0.3 }}
+                        >
+                          <IconFileCv stroke={1.5} />
+                        </motion.span>
+                      </>
+                    )}
+                  </NavbarButton>
+                </motion.div>
+              </div>
+            </MobileNavMenu>
+          </MobileNav>
+        </Navbar>
+      )}
 
       {/* Page Content */}
-      <div className="pt-16">{children}</div>
+      <div className={isProjectsPage ? "" : "pt-16"}>{children}</div>
     </div>
   );
 }

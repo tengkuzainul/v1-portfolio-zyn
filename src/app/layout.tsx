@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Manrope } from "next/font/google";
 import "./globals.css";
 import { AnimatedThemeToggler } from "@/components/magicui/animated-theme-toggler";
-import { NavBar } from "./components/navbar";
+import { NavBar } from "@/components/layout/navbar";
 import Providers from "@/components/providers/providers";
 import { Analytics } from "@vercel/analytics/react";
 import { WebVitals } from "@/components/web-vitals";
@@ -40,6 +40,29 @@ export const metadata: Metadata = {
   publisher: "Tengku M Zainul A",
   robots: "index, follow",
   metadataBase: new URL("https://tengkuzainul.me"),
+  icons: {
+    icon: [
+      { url: "/images/favicon/16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/images/favicon/32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/images/favicon/48x48.png", sizes: "48x48", type: "image/png" },
+      { url: "/images/favicon/64x64.png", sizes: "64x64", type: "image/png" },
+      {
+        url: "/images/favicon/128x128.png",
+        sizes: "128x128",
+        type: "image/png",
+      },
+      { url: "/images/favicon/32x32.svg", sizes: "any", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [
+      {
+        url: "/images/favicon/apple-touch-icon.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
+  },
+  manifest: "/manifest.json",
   openGraph: {
     type: "website",
     locale: "en_US",

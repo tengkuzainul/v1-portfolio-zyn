@@ -39,7 +39,10 @@ export function WordRotate({
       <AnimatePresence mode="wait">
         <motion.h1
           key={words[index]}
-          className={cn(className)}
+          className={cn(
+            "font-bold text-transparent bg-clip-text bg-gradient-to-br from-neutral-800 to-neutral-900 dark:from-neutral-200 dark:to-neutral-300",
+            className
+          )}
           {...motionProps}
         >
           {words[index]}
