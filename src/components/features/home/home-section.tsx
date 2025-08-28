@@ -11,6 +11,7 @@ import {
   IconBrandPhp,
   IconBrandMysql,
   IconBrandJavascript,
+  IconBrandBootstrap,
 } from "@tabler/icons-react";
 import { useEffect } from "react";
 import { LazyHeroContent, LazyTechStack } from "./components";
@@ -44,6 +45,7 @@ const HomeSection = () => {
     { name: "Javascript", icon: IconBrandJavascript, delay: 0.6 },
     { name: "React", icon: IconBrandReact, delay: 0.7 },
     { name: "Next.js", icon: IconBrandNextjs, delay: 0.8 },
+    { name: "Bootstrap", icon: IconBrandBootstrap, delay: 0.8 },
   ];
 
   // We're no longer using class-based animation sequence

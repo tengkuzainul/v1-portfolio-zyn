@@ -123,7 +123,7 @@ export function ProjectSection({ loaded = true }: { loaded?: boolean }) {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <motion.button
-            className="group relative inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-neutral-700 dark:text-white overflow-hidden border-2 border-black dark:border-white hover:text-black dark:hover:text-black transition-colors duration-300"
+            className="group relative inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-neutral-700 dark:text-neutral-300 overflow-hidden border-2 border-black dark:border-white hover:text-black dark:hover:text-neutral-50 transition-colors duration-300"
             onClick={handleShowMoreClick}
             onMouseEnter={() => router.prefetch("/projects")} // Hover prefetch for instant loading
             whileHover={{ scale: 1.02 }}

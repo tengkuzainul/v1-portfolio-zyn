@@ -56,7 +56,7 @@ export default function AllProjectsPage() {
   return (
     <section
       ref={sectionRefForInView}
-      className="min-h-screen bg-gray-50 dark:bg-black transition-colors duration-300 py-20"
+      className="min-h-screen bg-gray-200 dark:bg-neutral-900 transition-colors duration-300 py-20"
       id="all-projects"
     >
       <div className="max-w-6xl mx-auto px-6">
@@ -80,7 +80,7 @@ export default function AllProjectsPage() {
           </motion.button>
 
           <motion.h1
-            className="text-4xl md:text-8xl font-bold text-start mb-6 text-black dark:text-white"
+            className="text-4xl md:text-8xl font-bold text-start mb-6 text-neutral-800 dark:text-neutral-200"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -89,7 +89,7 @@ export default function AllProjectsPage() {
           </motion.h1>
 
           <motion.p
-            className="text-lg text-black dark:text-white mb-12 max-w-3xl"
+            className="text-lg text-neutral-700 dark:text-gray-300 mb-12 max-w-3xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -128,7 +128,7 @@ export default function AllProjectsPage() {
               <div className="text-3xl font-bold text-black dark:text-white mb-2">
                 {projects.length}
               </div>
-              <div className="text-gray-600 dark:text-gray-400">
+              <div className="text-neutral-900 dark:text-gray-300">
                 Total Projects
               </div>
             </div>
@@ -136,7 +136,7 @@ export default function AllProjectsPage() {
               <div className="text-3xl font-bold text-black dark:text-white mb-2">
                 {projects.filter((p: Project) => p.liveUrl).length}
               </div>
-              <div className="text-gray-600 dark:text-gray-400">
+              <div className="text-neutral-900 dark:text-gray-300">
                 Live Projects
               </div>
             </div>
@@ -144,7 +144,7 @@ export default function AllProjectsPage() {
               <div className="text-3xl font-bold text-black dark:text-white mb-2">
                 {new Set(projects.flatMap((p: Project) => p.technologies)).size}
               </div>
-              <div className="text-gray-600 dark:text-gray-400">
+              <div className="text-neutral-900 dark:text-gray-300">
                 Technologies Used
               </div>
             </div>
@@ -239,7 +239,7 @@ const AllProjectCard = memo(function AllProjectCard({
       <div className={precomputedStyles.projectCard.border}>
         {/* Project title header */}
         <div className={precomputedStyles.projectCard.header}>
-          <h3 className="font-medium tracking-wider text-lg text-black dark:text-white uppercase">
+          <h3 className="font-medium tracking-wider text-lg text-neutral-900 dark:text-gray-200 uppercase">
             {project.title}
           </h3>
         </div>
@@ -279,12 +279,12 @@ const AllProjectCard = memo(function AllProjectCard({
 
         {/* Project details section */}
         <div className={precomputedStyles.projectCard.content}>
-          <p className="text-black dark:text-white mb-6 text-sm leading-relaxed">
+          <p className="text-neutral-700 dark:text-neutral-300 mb-6 text-sm leading-relaxed">
             {project.description}
           </p>
 
           <div className="mt-auto">
-            <h4 className="text-xs uppercase font-semibold text-black dark:text-white mb-2">
+            <h4 className="text-xs uppercase font-semibold text-neutral-700 dark:text-neutral-300 mb-2">
               Technologies Used:
             </h4>
             <div className="h-[48px] overflow-hidden mb-6">
@@ -356,16 +356,16 @@ const CornerDecorations = memo(function CornerDecorations() {
   return (
     <>
       <div className="absolute -top-3 -left-3 z-10">
-        <IconPlus className="size-6 text-black dark:text-white" />
+        <IconPlus className="size-6 text-neutral-900 dark:text-neutral-300" />
       </div>
       <div className="absolute -top-3 -right-3 z-10">
-        <IconPlus className="size-6 text-black dark:text-white" />
+        <IconPlus className="size-6 text-neutral-900 dark:text-neutral-300" />
       </div>
       <div className="absolute -bottom-3 -left-3 z-10">
-        <IconPlus className="size-6 text-black dark:text-white" />
+        <IconPlus className="size-6 text-neutral-900 dark:text-neutral-300" />
       </div>
       <div className="absolute -bottom-3 -right-3 z-10">
-        <IconPlus className="size-6 text-black dark:text-white" />
+        <IconPlus className="size-6 text-neutral-900 dark:text-neutral-300" />
       </div>
     </>
   );

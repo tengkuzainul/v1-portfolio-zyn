@@ -66,7 +66,7 @@ export const precomputedStyles = {
   projectCard: {
     base: "relative group h-full", // Added h-full for consistent height
     border:
-      "flex flex-col border-[1.5px] border-black dark:border-white h-full", // Added h-full
+      "flex flex-col border-[1.5px] border-neutral-600 dark:border-neutral-500 h-full", // Added h-full
     header: "py-3 px-4 border-b-[1.5px] border-black dark:border-white",
     imageContainer: "relative bg-transparent overflow-hidden",
     image: "w-full h-[320px] object-cover object-center", // Reduced height for consistency
